@@ -1,0 +1,153 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Prediction Result</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="container mt-5">
+      <h1 class="text-center mb-4">Prediction Result</h1>
+      <div class="alert alert-info text-center">{{ result }}</div>
+      <div class="alert alert-info text-center">{{ form_data.gender }}</div>
+      <div class="text-center">
+        <a href="{% url 'index' %}" class="btn btn-primary">Predict Again</a>
+      </div>
+    </div>
+  </body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Prediction Result</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+
+        .header-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            margin-bottom: 20px;
+        }
+
+        .result-card {
+            border-radius: 15px;
+            padding: 20px;
+        }
+
+        .result-card h3 {
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .result-card .alert {
+            font-size: 1.2rem;
+        }
+
+        .data-list {
+            list-style-type: none;
+            padding-left: 0;
+        }
+
+        .data-list li {
+            padding: 10px 0;
+            font-size: 1.1rem;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .data-list li:last-child {
+            border-bottom: none;
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+            border-radius: 25px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container mt-5">
+        <!-- Header Image -->
+        <div class="text-center">
+            <img src="https://via.placeholder.com/1200x200.png?text=Healthcare+Prediction+Result"
+                alt="Healthcare Prediction" class="header-image" />
+        </div>
+
+        <div class="card result-card shadow-sm">
+
+            <h4 class="mt-4">Submitted Data</h4>
+            <div class="container mt-4">
+                <div class="row">
+                    <div class="col-md-6">
+                        <p><strong>Gender:</strong> {{ form_data.gender }}</p>
+                    </div>
+                    <div class="col-md-6">
+                        <p><strong>Age:</strong> {{ form_data.age }}</p>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <p><strong>Hypertension:</strong>
+                            {% if form_data.hypertension == 1 %} Yes {% else %} No {% endif %}</p>
+                    </div>
+                    <div class="col-md-6">
+                        <p>
+                            <strong>Heart Disease:</strong>
+                            {% if form_data.heart_disease == 1 %} Yes {% else %} No {% endif %}
+                        </p>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <p>
+                            <strong>Smoking History:</strong>
+                            {{ form_data.smoking_history }}
+                        </p>
+                    </div>
+                    <div class="col-md-6">
+                        <p><strong>BMI:</strong> {{ form_data.bmi }}</p>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <p><strong>HbA1c Level:</strong> {{ form_data.HbA1c_level }}</p>
+                    </div>
+                    <div class="col-md-6">
+                        <p>
+                            <strong>Blood Glucose Level:</strong>
+                            {{ form_data.blood_glucose_level }}
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="alert alert-info text-center">{{ result }}</div>
+
+
+            <div class="text-center mt-4">
+                <a href="{% url 'index' %}" class="btn btn-primary btn-lg">Predict Again</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
