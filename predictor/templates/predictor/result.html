@@ -91,6 +91,8 @@
 
             <h4 class="mt-4">Submitted Data</h4>
             <div class="container mt-4">
+
+                {% if 'diabetes' in request.path %}
                 <div class="row">
                     <div class="col-md-6">
                         <p><strong>Gender:</strong> {{ form_data.gender }}</p>
@@ -103,11 +105,11 @@
                 <div class="row">
                     <div class="col-md-6">
                         <p><strong>Hypertension:</strong>
-                            {% if form_data.hypertension == 1 %} Yes {% else %} No {% endif %}</p>
+                            {% if form_data.hypertension == 1 %} Yes {% else %} No {% endif %}
+                        </p>
                     </div>
                     <div class="col-md-6">
-                        <p>
-                            <strong>Heart Disease:</strong>
+                        <p><strong>Heart Disease:</strong>
                             {% if form_data.heart_disease == 1 %} Yes {% else %} No {% endif %}
                         </p>
                     </div>
@@ -115,10 +117,7 @@
 
                 <div class="row">
                     <div class="col-md-6">
-                        <p>
-                            <strong>Smoking History:</strong>
-                            {{ form_data.smoking_history }}
-                        </p>
+                        <p><strong>Smoking History:</strong> {{ form_data.smoking_history }}</p>
                     </div>
                     <div class="col-md-6">
                         <p><strong>BMI:</strong> {{ form_data.bmi }}</p>
@@ -130,12 +129,56 @@
                         <p><strong>HbA1c Level:</strong> {{ form_data.HbA1c_level }}</p>
                     </div>
                     <div class="col-md-6">
-                        <p>
-                            <strong>Blood Glucose Level:</strong>
-                            {{ form_data.blood_glucose_level }}
+                        <p><strong>Blood Glucose Level:</strong> {{ form_data.blood_glucose_level }}</p>
+                    </div>
+                </div>
+
+                {% elif 'thyroid' in request.path %}
+                <div class="row">
+                    <div class="col-md-6">
+                        <p><strong>Age:</strong> {{ form_data.age }}</p>
+                    </div>
+                    <div class="col-md-6">
+                        <p><strong>Sex:</strong> {% if form_data.sex|add:0 == 1 %} Female {% else %} Male {% endif %}
                         </p>
                     </div>
                 </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <p><strong>On Thyroxine:</strong> {% if form_data.on_thyroxine|add:0 == 1 %} Yes {% else %} No
+                            {%endif %}</p>
+                    </div>
+                    <div class="col-md-6">
+                        <p><strong>Pregnant:</strong> {% if form_data.pregnant|add:0 == 1 %} Yes {% else %} No
+                            {% endif%}</p>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <p><strong>Thyroid Surgery:</strong> {% if form_data.thyroid_surgery|add:0 == 1 %} Yes
+                            {% else%} No
+                            {% endif %}</p>
+                    </div>
+                    <div class="col-md-6">
+                        <p><strong>TSH Measured:</strong> {% if form_data.TSH_measured|add:0 == 1 %} Yes {% else %} No
+                            {%endif %}</p>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <p><strong>TT4 Measured:</strong> {% if form_data.TT4_measured|add:0 == 1 %} Yes {% else %} No
+                            {%endif %}</p>
+                    </div>
+                    <div class="col-md-6">
+                        <p><strong>TBG Measured:</strong> {% if form_data.TBG_measured|add:0 == 1 %} Yes {% else %} No
+                            {%endif %}</p>
+                    </div>
+                </div>
+                {% endif %} <!-- Close the if/elif block -->
+
             </div>
             <div class="alert alert-info text-center">{{ result }}</div>
 

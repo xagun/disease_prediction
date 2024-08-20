@@ -69,6 +69,17 @@
             padding: 0.75rem 2rem;
             border-radius: 5px;
         }
+
+        .body-img {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .body-image {
+            width: auto;
+            height: 500px;
+        }
     </style>
 </head>
 
@@ -91,6 +102,20 @@
             <div class="col-md-9 form-container">
                 <h1>Welcome to the Disease Prediction System</h1>
                 <p>Select a prediction option from the menu to get started.</p>
+                <p>
+
+                    Welcome to the Health Risk Predictor
+
+                    This app is designed to help you quickly assess your risk of thyroid disease and diabetes. By
+                    analyzing key health indicators, our model provides an early prediction, empowering you to take
+                    proactive steps in managing your health.
+
+
+                </p>
+                <div class="body-img">
+                    <img src="{% static 'predictor/images/logo.png' %}" alt="Healthcare Prediction"
+                        class="body-image" />
+                </div>
             </div>
         </div>
     </div>

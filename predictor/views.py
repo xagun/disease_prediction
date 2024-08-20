@@ -2,6 +2,7 @@
 
 from django.shortcuts import render
 from .forms import PredictionForm
+from .forms import ThyroidPredictionForm
 from .load_model import model
 
 
@@ -52,9 +53,9 @@ def diabetes_prediction(request):
                 'blood_glucose_level': blood_glucose_level
             }
             if prediction[0] == 1:
-                result = "The person is at risk of the disease."
+                result = "The person is at risk of the diabetes."
             else:
-                result = "The person is not at risk of the disease."
+                result = "The person is not at risk of the diabetes."
 
             return render(request, 'predictor/result.html', {
         'form': form,
@@ -65,3 +66,29 @@ def diabetes_prediction(request):
         form = PredictionForm()
 
     return render(request, 'predictor/diabetes.html', {'form': form})
+
+
+
+def thyroid_prediction(request):
+    if request.method == 'POST':
+        form = ThyroidPredictionForm(request.POST)
+        if form.is_valid():
+            data = form.cleaned_data
+            features =  [
+                int(data['age']),
+                int(data['sex']),
+                int(data['on_thyroxine']),
+                int(data['pregnant']),
+                int(data['thyroid_surgery']),
+                int(data['TSH_measured']),
+                int(data['TT4_measured']),
+                int(data['TBG_measured'])
+            ]
+
+            prediction = model.predict([features])
+            result = 'Thyroid Present' if prediction[0] == 1 else 'No Hypothyroid'
+            return render(request, 'predictor/result.html', {'result': result, 'form_data': data})
+    else:
+        form = ThyroidPredictionForm()
+
+    return render(request, 'predictor/thyroid.html', {'form': form})
